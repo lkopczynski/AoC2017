@@ -73,7 +73,6 @@ class Tower:
                         print x, y
 
 
-
 def find(f, l):
     for item in l:
         if f(item):
