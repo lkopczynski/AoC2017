@@ -24,8 +24,7 @@ class KnotString:
     def get_dense_hash(self):
         dh = []
         for i in range(16):
-            cl = self.marks[i:i+16]
-            print cl
+            cl = self.marks[i*16:i*16+16]
             xr = eval('^'.join([str(x) for x in cl]))
             dh.append(xr)
         return dh
@@ -42,7 +41,15 @@ class KnotString:
 
 with open('input.txt', 'r') as input_file:
     instructions = input_file.read()
-instructions = '1,2,4'
+
+# part 1
+kt = KnotString()
+for inst in instructions.split(','):
+    kt.process_length(int(inst))
+print 'Part 1: %d ' % kt.result()
+
+
+# part 2
 byte_instructions = []
 for c in instructions:
     byte_instructions.append(ord(c))
@@ -52,8 +59,8 @@ kt = KnotString()
 for i in range(64):
     for inst in byte_instructions:
         kt.process_length(int(inst))
-print kt.result()
-print kt.knot_hash()
+print 'Part 2: %s ' % kt.knot_hash()
+
 
 
 
